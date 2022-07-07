@@ -134,7 +134,7 @@ namespace AutoGUI
                     Simulate.Mouse.LeftButtonClick();
                     Thread.Sleep(250);
                     break;
-                case "A3A":
+                case "A3":
                     Simulate.Mouse.MoveMouseTo(ConvertX(143), ConvertY(700));
                     Simulate.Mouse.LeftButtonClick();
                     Thread.Sleep(250);
@@ -255,7 +255,8 @@ namespace AutoGUI
         {
             InputSimulator Simulate = new InputSimulator();
 
-            switch (x)
+            string X = x.ToUpper();
+            switch (X)
             {
                 case "F":
                     Simulate.Mouse.MoveMouseTo(ConvertX(325), ConvertY(202));
@@ -538,7 +539,7 @@ namespace AutoGUI
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
             string elapsedTime = String.Format("\n{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-            textBox7.Text += "Time elapsed: " + elapsedTime;
+            textBox7.Text = "Elapsed Time: " + elapsedTime;
             button1.Text = "Run";
         }
     }
