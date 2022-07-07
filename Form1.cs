@@ -35,6 +35,7 @@ namespace AutoGUI
             textBox2.Text = Settings.Default["WorkNum"].ToString();
             textBox3.Text = Settings.Default["StartRow"].ToString();
             textBox4.Text = Settings.Default["StopRow"].ToString();
+            //this.DesktopLocation = new System.Drawing.Point(1288, 711);
         }
         #region Methods
         public string[] GetRowExcel(int x, int y, string z)
@@ -57,7 +58,7 @@ namespace AutoGUI
             excel.Quit();
             return arr;
         }
-        public void CleanUp()
+        public static void CleanUp()
         {
             do
             {
@@ -69,18 +70,12 @@ namespace AutoGUI
         public int[] Resolution()
         {
             int[] xy = new int[2];
-            xy[0] = Convert.ToInt32(textBox5.Text) - 1;
-            xy[1] = Convert.ToInt32(textBox6.Text) - 1;
+            xy[0] = Convert.ToInt16(textBox5.Text) - 1;
+            xy[1] = Convert.ToInt16(textBox6.Text) - 1;
             return xy;
         }
-        public double ConvertX(int x)
-        {
-            return x * 65535 / Resolution()[0];
-        }
-        public double ConvertY(int y)
-        {
-            return y * 65535 / Resolution()[1];
-        }
+        public double ConvertX(int x) => x * 65535 / Resolution()[0];
+        public double ConvertY(int y) => y * 65535 / Resolution()[1];
         public void PriorityGroup(string pg)
         {
             InputSimulator Simulate = new InputSimulator();
@@ -245,7 +240,7 @@ namespace AutoGUI
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(200);
         }
-        public void Scroll(int x)
+        public static void Scrolls(int x)
         {
             InputSimulator Simulate = new InputSimulator();
             Simulate.Mouse.VerticalScroll(x);
@@ -276,9 +271,9 @@ namespace AutoGUI
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(100);
             if (number == null)
-                Simulate.Keyboard.TextEntry(number);
-            else
                 Simulate.Keyboard.TextEntry("4132316");
+            else
+                Simulate.Keyboard.TextEntry(number);
             Thread.Sleep(100);
         }
         public void Guardian(string guardian)
@@ -509,26 +504,26 @@ namespace AutoGUI
                 Names(row[2], row[3], row[4]);
                 Suffix(row[5]);
                 BDate(row[9]);
-                Scroll(-30);
+                Scrolls(-30);
                 Sex(row[8]);
                 Contact(row[6]);
 
                 if (row[0].ToUpper() == "ROPP1" || row[0].ToUpper() == "ROPP2")
                     Guardian(row[15]);
                 else
-                    Scroll(3);
+                    Scrolls(3);
 
                 Address();
                 Barangay(row[7]);
-                Scroll(-33);
+                Scrolls(-33);
                 Vaccine(row[14]);
 
-                if (row[14].ToLower() == "jj") Scroll(2);
+                if (row[14].ToLower() == "jj") Scrolls(2);
 
                 Dose(row[11]);
                 Vaccinator(row[10]);
                 VacDate(row[13]);
-                Scroll(-4);
+                Scrolls(-4);
                 BatchLot(row[12]);
                 Save();
                 CleanUp();
