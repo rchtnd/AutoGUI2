@@ -1,7 +1,8 @@
 using Microsoft.Office.Interop.Excel;
 using System;
 using System.Threading;
-using WindowsInput;
+using System.Diagnostics;
+using InputSimulatorStandard;
 using AutoGUI2.Properties;
 
 namespace AutoGUI
@@ -44,13 +45,13 @@ namespace AutoGUI
             Worksheet ws = wb.Worksheets[y];
             Microsoft.Office.Interop.Excel.Range row = ws.Rows[x];
 
-            string[] arr = new string[15];
+            string[] arr = new string[16];
             int i = 0;
             foreach (var cell in row.Value)
             {
                 arr[i] = Convert.ToString(cell);
                 i++;
-                if (i == 15) break;
+                if (i == 16) break;
             }
             wb.Close(0);
             excel.Quit();
@@ -88,7 +89,8 @@ namespace AutoGUI
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(200);
 
-            switch (pg)
+            string prgr = pg.ToUpper();
+            switch (prgr)
             {
                 case "ROPP1":
                     Simulate.Mouse.MoveMouseTo(ConvertX(235), ConvertY(650));
@@ -98,7 +100,6 @@ namespace AutoGUI
                     Simulate.Mouse.LeftButtonClick();
                     Thread.Sleep(250);
                     break;
-
                 case "ROPP2":
                     Simulate.Mouse.MoveMouseTo(ConvertX(235), ConvertY(700));
                     Thread.Sleep(100);
@@ -107,25 +108,45 @@ namespace AutoGUI
                     Simulate.Mouse.LeftButtonClick();
                     Thread.Sleep(250);
                     break;
-
+                /*case "A3ROPP1":
+                    Simulate.Mouse.MoveMouseTo(ConvertX(235), ConvertY(508));
+                    Thread.Sleep(100);
+                    Simulate.Mouse.VerticalScroll(-24);
+                    Thread.Sleep(100);
+                    Simulate.Mouse.LeftButtonClick();
+                    Thread.Sleep(250);
+                    break;
+                case "A3ROPP2":
+                    Simulate.Mouse.MoveMouseTo(ConvertX(235), ConvertY(559));
+                    Thread.Sleep(100);
+                    Simulate.Mouse.VerticalScroll(-24);
+                    Thread.Sleep(100);
+                    Simulate.Mouse.LeftButtonClick();
+                    Thread.Sleep(250);
+                    break;*/
                 case "A1":
                     Simulate.Mouse.MoveMouseTo(ConvertX(143), ConvertY(510));
                     Simulate.Mouse.LeftButtonClick();
                     Thread.Sleep(250);
                     break;
-
                 case "A2":
                     Simulate.Mouse.MoveMouseTo(ConvertX(143), ConvertY(654));
                     Simulate.Mouse.LeftButtonClick();
                     Thread.Sleep(250);
                     break;
-
-                case "A3":
+                case "A3A":
                     Simulate.Mouse.MoveMouseTo(ConvertX(143), ConvertY(700));
                     Simulate.Mouse.LeftButtonClick();
                     Thread.Sleep(250);
                     break;
-
+                case "A3B":
+                    Simulate.Mouse.MoveMouseTo(ConvertX(143), ConvertY(691));
+                    Thread.Sleep(100);
+                    Simulate.Mouse.VerticalScroll(-3);
+                    Thread.Sleep(100);
+                    Simulate.Mouse.LeftButtonClick();
+                    Thread.Sleep(250);
+                    break;
                 case "A4":
                     Simulate.Mouse.MoveMouseTo(ConvertX(143), ConvertY(684));
                     Thread.Sleep(100);
@@ -134,7 +155,6 @@ namespace AutoGUI
                     Simulate.Mouse.LeftButtonClick();
                     Thread.Sleep(250);
                     break;
-
                 case "A5":
                     Simulate.Mouse.MoveMouseTo(ConvertX(143), ConvertY(684));
                     Thread.Sleep(100);
@@ -143,7 +163,6 @@ namespace AutoGUI
                     Simulate.Mouse.LeftButtonClick();
                     Thread.Sleep(250);
                     break;
-
                 case "ROAP":
                     Simulate.Mouse.MoveMouseTo(ConvertX(143), ConvertY(606));
                     Thread.Sleep(100);
@@ -159,7 +178,7 @@ namespace AutoGUI
             InputSimulator Simulate = new InputSimulator();
             Simulate.Mouse.MoveMouseTo(ConvertX(263), ConvertY(262));
             Simulate.Mouse.LeftButtonClick();
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             Simulate.Keyboard.TextEntry(ID);
             Thread.Sleep(200);
         }
@@ -188,7 +207,10 @@ namespace AutoGUI
             Thread.Sleep(100);
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(100);
-            Simulate.Keyboard.TextEntry(middle);
+            if (middle == null)
+                Simulate.Keyboard.TextEntry("NONE");
+            else
+                Simulate.Keyboard.TextEntry(middle);
             Thread.Sleep(100);
         }
         public void Suffix(string sfx)
@@ -225,7 +247,6 @@ namespace AutoGUI
         }
         public void Scroll(int x)
         {
-            Thread.Sleep(100);
             InputSimulator Simulate = new InputSimulator();
             Simulate.Mouse.VerticalScroll(x);
             Thread.Sleep(100);
@@ -253,17 +274,23 @@ namespace AutoGUI
             Simulate.Mouse.MoveMouseTo(ConvertX(209), ConvertY(254));
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(100);
-            Simulate.Keyboard.TextEntry(number);
+            if (number == null)
+                Simulate.Keyboard.TextEntry(number);
+            else
+                Simulate.Keyboard.TextEntry("4132316");
             Thread.Sleep(100);
         }
-        public void Guardian()
+        public void Guardian(string guardian)
         {
             InputSimulator Simulate = new InputSimulator();
 
             Simulate.Mouse.MoveMouseTo(ConvertX(205), ConvertY(321));
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(100);
-            Simulate.Keyboard.TextEntry("NONE, NONE");
+            if (guardian == null)
+                Simulate.Keyboard.TextEntry("NONE, NONE");
+            else
+                Simulate.Keyboard.TextEntry(guardian);
             Thread.Sleep(100);
         }
         public void Address()
@@ -302,7 +329,10 @@ namespace AutoGUI
             Thread.Sleep(100);
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(100);
-            Simulate.Keyboard.TextEntry(brgy);
+            if (brgy == null)
+                Simulate.Keyboard.TextEntry("Poblacion");
+            else
+                Simulate.Keyboard.TextEntry(brgy);
             Thread.Sleep(100);
         }
         public void Vaccine(string vac)
@@ -312,30 +342,48 @@ namespace AutoGUI
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(100);
 
-            switch (vac)
+            string vaccine = vac.ToLower();
+            switch (vaccine)
             {
-                case "Sinovac":
+                case "sinovac":
                     Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(462));
                     Thread.Sleep(100);
                     Simulate.Mouse.LeftButtonClick();
                     break;
-                case "AZ":
+                case "az":
                     Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(509));
                     Thread.Sleep(100);
                     Simulate.Mouse.LeftButtonClick();
                     break;
-                case "Pfizer":
-                    Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(606));
-                    Thread.Sleep(100);
-                    Simulate.Mouse.LeftButtonClick();
-                    break;
-                case "Gamaleya":
+                case "gamaleya":
                     Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(555));
                     Thread.Sleep(100);
                     Simulate.Mouse.LeftButtonClick();
                     break;
-                case "Janssen":
+                case "pfizer":
+                    Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(606));
+                    Thread.Sleep(100);
+                    Simulate.Mouse.LeftButtonClick();
+                    break;
+                case "moderna":
+                    Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(650));
+                    Thread.Sleep(100);
+                    Simulate.Mouse.LeftButtonClick();
+                    break;
+                case "novavax":
+                    Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(700));
+                    Thread.Sleep(100);
+                    Simulate.Mouse.LeftButtonClick();
+                    break;
+                case "jj":
                     Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(653));
+                    Thread.Sleep(100);
+                    Simulate.Mouse.VerticalScroll(-5);
+                    Thread.Sleep(100);
+                    Simulate.Mouse.LeftButtonClick();
+                    break;
+                case "sinopharm":
+                    Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(700));
                     Thread.Sleep(100);
                     Simulate.Mouse.VerticalScroll(-5);
                     Thread.Sleep(100);
@@ -413,7 +461,7 @@ namespace AutoGUI
             Simulate.Keyboard.TextEntry(batchlot);
             Thread.Sleep(200);
         }
-        public  void Save()
+        public void Save()
         {
             InputSimulator Simulate = new InputSimulator();
             Simulate.Mouse.MoveMouseTo(ConvertX(1243), ConvertY(688));
@@ -432,7 +480,6 @@ namespace AutoGUI
         #endregion
         private void button1_Click(object sender, EventArgs e) // "Main"
         {
-            button1.Text = "Running...";
             Settings.Default["X"] = textBox5.Text;
             Settings.Default["Y"] = textBox6.Text;
             Settings.Default["FilePath"] = textBox1.Text;
@@ -441,12 +488,16 @@ namespace AutoGUI
             Settings.Default["StopRow"] = textBox4.Text;
             Settings.Default.Save();
 
+            button1.Text = "Running...";
+
+            Stopwatch stopWatch = new Stopwatch();
             int rowStart = Convert.ToInt16(textBox3.Text);
             int rowStop = Convert.ToInt16(textBox4.Text);
             int wsNum = Convert.ToInt16(textBox2.Text);
             string filePath = textBox1.Text;
 
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
+            stopWatch.Start();
             while (rowStart < rowStop + 1)
             {
                 string[] row = GetRowExcel(rowStart, wsNum, filePath);
@@ -461,15 +512,17 @@ namespace AutoGUI
                 Sex(row[8]);
                 Contact(row[6]);
 
-                if (row[0] == "ROPP1" || row[0] == "ROPP2") Guardian();
-                else Scroll(3);
+                if (row[0].ToUpper() == "ROPP1" || row[0].ToUpper() == "ROPP2")
+                    Guardian(row[15]);
+                else
+                    Scroll(3);
 
                 Address();
                 Barangay(row[7]);
                 Scroll(-33);
                 Vaccine(row[14]);
 
-                if (row[14] == "Janssen") Scroll(2);
+                if (row[14].ToLower() == "jj") Scroll(2);
 
                 Dose(row[11]);
                 Vaccinator(row[10]);
@@ -482,6 +535,10 @@ namespace AutoGUI
                 rowStart++;
             }
 
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("\n{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            textBox7.Text += "Time elapsed: " + elapsedTime;
             button1.Text = "Run";
         }
     }

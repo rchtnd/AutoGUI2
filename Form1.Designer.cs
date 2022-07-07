@@ -41,11 +41,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(258, 118);
+            this.button1.Location = new System.Drawing.Point(258, 114);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 35);
             this.button1.TabIndex = 0;
@@ -163,11 +164,23 @@
             this.textBox5.Size = new System.Drawing.Size(65, 23);
             this.textBox5.TabIndex = 9;
             // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(369, 114);
+            this.textBox7.MaximumSize = new System.Drawing.Size(500, 500);
+            this.textBox7.MinimumSize = new System.Drawing.Size(20, 10);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(198, 35);
+            this.textBox7.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 162);
+            this.ClientSize = new System.Drawing.Size(618, 161);
+            this.Controls.Add(this.textBox7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox6);
@@ -183,7 +196,7 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
-            this.Text = "AutoGUI 2.0";
+            this.Text = "AutoGUI 2.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -205,5 +218,6 @@
         private Label label6;
         private TextBox textBox6;
         private TextBox textBox5;
+        private TextBox textBox7;
     }
 }
