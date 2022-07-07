@@ -166,13 +166,13 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(210, 114);
+            this.textBox7.Location = new System.Drawing.Point(228, 114);
             this.textBox7.MaximumSize = new System.Drawing.Size(500, 500);
             this.textBox7.MinimumSize = new System.Drawing.Size(20, 10);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(198, 35);
+            this.textBox7.Size = new System.Drawing.Size(164, 35);
             this.textBox7.TabIndex = 13;
             // 
             // Form1
