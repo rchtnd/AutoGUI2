@@ -1,9 +1,8 @@
-using Microsoft.Office.Interop.Excel;
-using System;
-using System.Threading;
-using System.Diagnostics;
-using InputSimulatorStandard;
 using AutoGUI2.Properties;
+using InputSimulatorStandard;
+using Microsoft.Office.Interop.Excel;
+using System.Diagnostics;
+using Point = System.Drawing.Point;
 
 namespace AutoGUI
 {
@@ -13,20 +12,6 @@ namespace AutoGUI
         {
             InitializeComponent();
         }
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
         private void Form1_Load(object sender, EventArgs e)
         {
             textBox5.Text = Settings.Default["X"].ToString();
@@ -35,7 +20,18 @@ namespace AutoGUI
             textBox2.Text = Settings.Default["WorkNum"].ToString();
             textBox3.Text = Settings.Default["StartRow"].ToString();
             textBox4.Text = Settings.Default["StopRow"].ToString();
-            //this.DesktopLocation = new System.Drawing.Point(1288, 711);
+            this.DesktopLocation = (Point) Settings.Default["Location"];
+        }
+        private void Form1_Closed(object sender, FormClosedEventArgs e)
+        {
+            Settings.Default["X"] = textBox5.Text;
+            Settings.Default["Y"] = textBox6.Text;
+            Settings.Default["FilePath"] = textBox1.Text;
+            Settings.Default["WorkNum"] = textBox2.Text;
+            Settings.Default["StartRow"] = textBox3.Text;
+            Settings.Default["StopRow"] = textBox4.Text;
+            Settings.Default["Location"] = this.DesktopLocation;
+            Settings.Default.Save();
         }
         #region Methods
         public string[] GetRowExcel(int x, int y, string z)
@@ -476,14 +472,6 @@ namespace AutoGUI
         #endregion
         private void button1_Click(object sender, EventArgs e) // "Main"
         {
-            Settings.Default["X"] = textBox5.Text;
-            Settings.Default["Y"] = textBox6.Text;
-            Settings.Default["FilePath"] = textBox1.Text;
-            Settings.Default["WorkNum"] = textBox2.Text;
-            Settings.Default["StartRow"] = textBox3.Text;
-            Settings.Default["StopRow"] = textBox4.Text;
-            Settings.Default.Save();
-
             button1.Text = "Running...";
 
             Stopwatch stopWatch = new Stopwatch();
