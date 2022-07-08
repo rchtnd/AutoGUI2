@@ -1,6 +1,6 @@
 ﻿namespace AutoGUI
 {
-    partial class Form1
+    partial class AutoGUIForm
     {
         /// <summary>
         ///  Required designer variable.

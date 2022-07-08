@@ -25,7 +25,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1920")]
         public string X {
             get {
                 return ((string)(this["X"]));
@@ -37,7 +37,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1080")]
         public string Y {
             get {
                 return ((string)(this["Y"]));
@@ -49,7 +49,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("enter file path here")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Users\\\\ambat\\\\Desktop\\\\test.xlsx")]
         public string FilePath {
             get {
                 return ((string)(this["FilePath"]));
@@ -61,7 +61,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public string StartRow {
             get {
                 return ((string)(this["StartRow"]));
@@ -73,7 +73,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public string StopRow {
             get {
                 return ((string)(this["StopRow"]));
@@ -85,7 +85,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("12")]
         public string WorkNum {
             get {
                 return ((string)(this["WorkNum"]));

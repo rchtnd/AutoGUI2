@@ -1,3 +1,4 @@
+using AutoGUI2;
 using AutoGUI2.Properties;
 using InputSimulatorStandard;
 using Microsoft.Office.Interop.Excel;
@@ -6,11 +7,25 @@ using Point = System.Drawing.Point;
 
 namespace AutoGUI
 {
-    public partial class Form1 : Form
+    public partial class AutoGUIForm : Form
     {
-        public Form1()
+        private KeyHandler ghk;
+        public AutoGUIForm()
         {
             InitializeComponent();
+            ghk = new KeyHandler(Keys.Escape, this);
+            ghk.Register();
+        }
+        private async Task HandleHotkey()
+        {
+            await Task.Run(() => throw new Exception("Encoding has been cancelled."));
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == HConstants.WM_HOTKEY_MSG_ID)
+                HandleHotkey();
+            base.WndProc(ref m);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -470,18 +485,13 @@ namespace AutoGUI
             Thread.Sleep(100);
         }
         #endregion
-        private void button1_Click(object sender, EventArgs e) // "Main"
+        public async Task EncodeTask()
         {
-            button1.Text = "Running...";
-
-            Stopwatch stopWatch = new Stopwatch();
             int rowStart = Convert.ToInt16(textBox3.Text);
             int rowStop = Convert.ToInt16(textBox4.Text);
             int wsNum = Convert.ToInt16(textBox2.Text);
             string filePath = textBox1.Text;
 
-            Thread.Sleep(1000);
-            stopWatch.Start();
             while (rowStart < rowStop + 1)
             {
                 string[] row = GetRowExcel(rowStart, wsNum, filePath);
@@ -518,6 +528,15 @@ namespace AutoGUI
 
                 rowStart++;
             }
+        }
+        private async void button1_Click(object sender, EventArgs e) // "Main"
+        {
+            button1.Text = "Running...";
+
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            await Task.Run(() => EncodeTask());
 
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
