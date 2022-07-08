@@ -173,7 +173,7 @@
             this.textBox7.Size = new System.Drawing.Size(164, 35);
             this.textBox7.TabIndex = 13;
             // 
-            // Form1
+            // AutoGUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -195,8 +195,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(634, 241);
             this.MinimumSize = new System.Drawing.Size(634, 241);
-            this.Name = "Form1";
-            this.Text = "AutoGUI 2.1.1";
+            this.Name = "AutoGUIForm";
+            this.Text = "AutoGUI 2.2";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_Closed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

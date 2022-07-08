@@ -18,7 +18,7 @@ namespace AutoGUI
         }
         private async Task HandleHotkey()
         {
-            await Task.Run(() => throw new Exception("Encoding has been cancelled."));
+            await Task.Run(() => System.Windows.Forms.Application.Exit());
         }
 
         protected override void WndProc(ref Message m)
