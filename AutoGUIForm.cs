@@ -95,8 +95,7 @@ namespace AutoGUI
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(200);
 
-            string prgr = pg.ToUpper();
-            switch (prgr)
+            switch (pg.ToUpper())
             {
                 case "ROPP1":
                     Simulate.Mouse.MoveMouseTo(ConvertX(235), ConvertY(650));
@@ -261,8 +260,7 @@ namespace AutoGUI
         {
             InputSimulator Simulate = new InputSimulator();
 
-            string X = x.ToUpper();
-            switch (X)
+            switch (x.ToUpper())
             {
                 case "F":
                     Simulate.Mouse.MoveMouseTo(ConvertX(325), ConvertY(202));
@@ -349,8 +347,7 @@ namespace AutoGUI
             Simulate.Mouse.LeftButtonClick();
             Thread.Sleep(100);
 
-            string vaccine = vac.ToLower();
-            switch (vaccine)
+            switch (vac.ToLower())
             {
                 case "sinovac":
                     Simulate.Mouse.MoveMouseTo(ConvertX(138), ConvertY(462));

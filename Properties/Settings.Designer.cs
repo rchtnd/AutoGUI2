@@ -49,7 +49,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Users\\\\ambat\\\\Desktop\\\\test.xlsx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Users\\\\[USER]\\\\Desktop\\\\test.xlsx")]
         public string FilePath {
             get {
                 return ((string)(this["FilePath"]));

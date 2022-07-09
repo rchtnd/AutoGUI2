@@ -9,7 +9,7 @@
       <Value Profile="(Default)">1080</Value>
     </Setting>
     <Setting Name="FilePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\\Users\\ambat\\Desktop\\test.xlsx</Value>
+      <Value Profile="(Default)">C:\\Users\\[USER]\\Desktop\\test.xlsx</Value>
     </Setting>
     <Setting Name="StartRow" Type="System.String" Scope="User">
       <Value Profile="(Default)">2</Value>
