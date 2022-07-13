@@ -25,31 +25,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1920")]
-        public string X {
-            get {
-                return ((string)(this["X"]));
-            }
-            set {
-                this["X"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1080")]
-        public string Y {
-            get {
-                return ((string)(this["Y"]));
-            }
-            set {
-                this["Y"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Users\\\\[USER]\\\\Desktop\\\\test.xlsx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string FilePath {
             get {
                 return ((string)(this["FilePath"]));
@@ -85,7 +61,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("12")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public string WorkNum {
             get {
                 return ((string)(this["WorkNum"]));
@@ -97,13 +73,37 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("640, 480")]
         public global::System.Drawing.Point Location {
             get {
                 return ((global::System.Drawing.Point)(this["Location"]));
             }
             set {
                 this["Location"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Username {
+            get {
+                return ((string)(this["Username"]));
+            }
+            set {
+                this["Username"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Password {
+            get {
+                return ((string)(this["Password"]));
+            }
+            set {
+                this["Password"] = value;
             }
         }
     }

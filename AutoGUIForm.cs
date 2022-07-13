@@ -16,39 +16,40 @@ namespace AutoGUI
             ghk = new KeyHandler(Keys.Escape, this);
             ghk.Register();
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = Settings.Default["FilePath"].ToString();
+            textBox2.Text = Settings.Default["WorkNum"].ToString();
+            textBox3.Text = Settings.Default["StartRow"].ToString();
+            textBox4.Text = Settings.Default["StopRow"].ToString();
+            textBox5.Text = Settings.Default["Username"].ToString();
+            textBox6.Text = Settings.Default["Password"].ToString();
+            this.DesktopLocation = (Point) Settings.Default["Location"];
+        }
+        private void Form1_Closed(object sender, FormClosedEventArgs e)
+        {
+            Settings.Default["FilePath"] = textBox1.Text;
+            Settings.Default["WorkNum"] = textBox2.Text;
+            Settings.Default["StartRow"] = textBox3.Text;
+            Settings.Default["StopRow"] = textBox4.Text;
+            Settings.Default["Username"] = textBox5.Text;
+            Settings.Default["Password"] = textBox6.Text;
+            Settings.Default["Location"] = this.DesktopLocation;
+            Settings.Default.Save();
+        }
+        #region Esc Hotkey
         private async Task HandleHotkey()
         {
             await Task.Run(() => System.Windows.Forms.Application.Exit());
         }
-
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == HConstants.WM_HOTKEY_MSG_ID)
                 HandleHotkey();
             base.WndProc(ref m);
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            textBox5.Text = Settings.Default["X"].ToString();
-            textBox6.Text = Settings.Default["Y"].ToString();
-            textBox1.Text = Settings.Default["FilePath"].ToString();
-            textBox2.Text = Settings.Default["WorkNum"].ToString();
-            textBox3.Text = Settings.Default["StartRow"].ToString();
-            textBox4.Text = Settings.Default["StopRow"].ToString();
-            this.DesktopLocation = (Point) Settings.Default["Location"];
-        }
-        private void Form1_Closed(object sender, FormClosedEventArgs e)
-        {
-            Settings.Default["X"] = textBox5.Text;
-            Settings.Default["Y"] = textBox6.Text;
-            Settings.Default["FilePath"] = textBox1.Text;
-            Settings.Default["WorkNum"] = textBox2.Text;
-            Settings.Default["StartRow"] = textBox3.Text;
-            Settings.Default["StopRow"] = textBox4.Text;
-            Settings.Default["Location"] = this.DesktopLocation;
-            Settings.Default.Save();
-        }
-        #region Methods
+        #endregion
+        #region Encoding Methods
         public string[] GetRowExcel(int x, int y, string z)
         {
             
@@ -81,12 +82,18 @@ namespace AutoGUI
         public int[] Resolution()
         {
             int[] xy = new int[2];
-            xy[0] = Convert.ToInt16(textBox5.Text) - 1;
-            xy[1] = Convert.ToInt16(textBox6.Text) - 1;
+            xy[0] = (int)(System.Windows.SystemParameters.PrimaryScreenWidth) - 1;
+            xy[1] = (int)(System.Windows.SystemParameters.PrimaryScreenHeight) - 1;
             return xy;
         }
-        public double ConvertX(int x) => x * 65535 / Resolution()[0];
-        public double ConvertY(int y) => y * 65535 / Resolution()[1];
+        public static double ConvertX(int x)
+        {
+            return x * 65535 / ((int)(System.Windows.SystemParameters.PrimaryScreenWidth) - 1);
+        }
+        public static double ConvertY(int y)
+        {
+            return y * 65535 / ((int)(System.Windows.SystemParameters.PrimaryScreenHeight) - 1);
+        }
         public void PriorityGroup(string pg)
         {
             InputSimulator Simulate = new InputSimulator();
@@ -487,7 +494,7 @@ namespace AutoGUI
             int rowStart = Convert.ToInt16(textBox3.Text);
             int rowStop = Convert.ToInt16(textBox4.Text);
             int wsNum = Convert.ToInt16(textBox2.Text);
-            string filePath = textBox1.Text;
+            string filePath = @textBox1.Text;
 
             while (rowStart < rowStop + 1)
             {
@@ -526,9 +533,11 @@ namespace AutoGUI
                 rowStart++;
             }
         }
-        private async void button1_Click(object sender, EventArgs e) // "Main"
+        private async void guna2Button2_Click_1(object sender, EventArgs e) // Main
         {
-            button1.Text = "Running...";
+            guna2Button2.Text = "Encoding.";
+            guna2Button2.Text = "Encoding..";
+            guna2Button2.Text = "Encoding...";
 
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -539,7 +548,39 @@ namespace AutoGUI
             TimeSpan ts = stopWatch.Elapsed;
             string elapsedTime = String.Format("\n{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             textBox7.Text = "Elapsed Time: " + elapsedTime;
-            button1.Text = "Run";
+            guna2Button2.Text = "Encode";
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new();
+            fileDialog.InitialDirectory = @"C:\Users\%USERPROFILE\Desktop";
+            fileDialog.Filter = "Worksheets (*.xlsx;*.xlsm;*.xlsb;*.xls)|*.xlsx;*.xlsm;*.xlsb;*.xls|All files (*.*)|*.*";
+            fileDialog.FilterIndex = 1;
+            fileDialog.RestoreDirectory = true;
+            if (fileDialog.ShowDialog() != DialogResult.OK) return;
+
+            textBox1.Text = fileDialog.FileName;
+        }
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            InputSimulator Simulate = new();
+
+            // Username
+            Simulate.Mouse.MoveMouseTo(ConvertX(180), ConvertY(400));
+            Thread.Sleep(100);
+            Simulate.Mouse.LeftButtonClick();
+            Simulate.Keyboard.TextEntry(textBox5.Text);
+
+            // Password
+            Simulate.Mouse.MoveMouseTo(ConvertX(180), ConvertY(458));
+            Thread.Sleep(100);
+            Simulate.Mouse.LeftButtonClick();
+            Simulate.Keyboard.TextEntry(textBox5.Text);
+
+            // Login
+            Simulate.Mouse.MoveMouseTo(ConvertX(180), ConvertY(511));
+            Thread.Sleep(100);
+            Simulate.Mouse.LeftButtonClick();
         }
     }
 }
