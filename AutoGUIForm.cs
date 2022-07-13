@@ -535,8 +535,6 @@ namespace AutoGUI
         }
         private async void guna2Button2_Click_1(object sender, EventArgs e) // Main
         {
-            guna2Button2.Text = "Encoding.";
-            guna2Button2.Text = "Encoding..";
             guna2Button2.Text = "Encoding...";
 
             Stopwatch stopWatch = new Stopwatch();
