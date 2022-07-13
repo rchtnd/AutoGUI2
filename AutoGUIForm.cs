@@ -569,13 +569,17 @@ namespace AutoGUI
             Simulate.Mouse.MoveMouseTo(ConvertX(180), ConvertY(400));
             Thread.Sleep(100);
             Simulate.Mouse.LeftButtonClick();
+            Thread.Sleep(100);
             Simulate.Keyboard.TextEntry(textBox5.Text);
+            Thread.Sleep(100);
 
             // Password
             Simulate.Mouse.MoveMouseTo(ConvertX(180), ConvertY(458));
             Thread.Sleep(100);
             Simulate.Mouse.LeftButtonClick();
+            Thread.Sleep(100);
             Simulate.Keyboard.TextEntry(textBox6.Text);
+            Thread.Sleep(100);
 
             // Login
             Simulate.Mouse.MoveMouseTo(ConvertX(180), ConvertY(511));
