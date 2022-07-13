@@ -37,7 +37,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string StartRow {
             get {
                 return ((string)(this["StartRow"]));
@@ -49,7 +49,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string StopRow {
             get {
                 return ((string)(this["StopRow"]));
@@ -61,7 +61,7 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string WorkNum {
             get {
                 return ((string)(this["WorkNum"]));
@@ -73,7 +73,6 @@ namespace AutoGUI2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("640, 480")]
         public global::System.Drawing.Point Location {
             get {
                 return ((global::System.Drawing.Point)(this["Location"]));
