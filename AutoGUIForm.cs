@@ -575,7 +575,7 @@ namespace AutoGUI
             Simulate.Mouse.MoveMouseTo(ConvertX(180), ConvertY(458));
             Thread.Sleep(100);
             Simulate.Mouse.LeftButtonClick();
-            Simulate.Keyboard.TextEntry(textBox5.Text);
+            Simulate.Keyboard.TextEntry(textBox6.Text);
 
             // Login
             Simulate.Mouse.MoveMouseTo(ConvertX(180), ConvertY(511));
